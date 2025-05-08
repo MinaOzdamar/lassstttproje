@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GoldenQA</title>
+    <link rel="stylesheet" href="{% static 'cores/styles.css' %}">
+</head>
+<body>
+    <div class="nav">
+        {% if user.is_authenticated %}
+            <span>Hello, {{ user.username }}</span> |
+            <a href="{% url 'logout' %}">Log out</a>
+        {% else %}
+            <a href="{% url 'login' %}">Log in</a> |
+            <a href="{% url 'signup' %}">Sign up</a>
+        {% endif %}
+    </div>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

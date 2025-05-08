@@ -1,0 +1,107 @@
+{% extends 'cores/base.html' %}
+
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .signup-container {
+        background-color: #fff;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        max-width: 450px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.7s ease-in-out;
+        margin-left: 3rem; /* Sol üst köşe hizası için */
+        margin-top: 2rem;
+    }
+
+    .signup-container h2 {
+        font-size: 2rem;
+        color: #ff6f61;
+        margin-bottom: 1.5rem;
+    }
+
+    .signup-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .signup-container label {
+        margin: 0.5rem 0 0.25rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .signup-container input {
+        padding: 0.7rem 1rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .signup-container input:focus {
+        border-color: #ff6f61;
+    }
+
+    .signup-container button {
+        margin-top: 1.5rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+        background-color: #ff6f61;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: fit-content;
+    }
+
+    .signup-container button:hover {
+        background-color: #e0554f;
+    }
+
+    .note {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .note a {
+        color: #ff6f61;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="signup-container">
+    <h2>🎉 Create Your Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <div class="note">
+        Already have an account? <a href="{% url 'login' %}">Login here</a>
+    </div>
+</div>
+{% endblock %}
